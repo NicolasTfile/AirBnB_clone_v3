@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Contains the FileStorage class
+New update to the FileStorage class
 """
 
 import json

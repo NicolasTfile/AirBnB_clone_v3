@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Update the class DBStorage
+New update to the class DBStorage
 """
 
 import models

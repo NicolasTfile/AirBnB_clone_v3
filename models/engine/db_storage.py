@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-New update to the class DBStorage
+Contains the class DBStorage
 """
 
 import models
@@ -76,23 +76,31 @@ class DBStorage:
         self.__session.remove()
 
     def get(self, cls, id):
-        """retrieve one object with id from current database session"""
-        obj = None
-        if cls and id:
-            try:
-                if isinstance(cls, BaseModel):
-                    cls_name = str(cls).split('.')[-1]
-                if isinstance(cls, str):
-                    cls_name = cls
-                else:
-                    cls_name = cls.__name__
-                obj = self.__session.query(classes[cls_name]).get({'id': id})
-            except sqlalchemy.orm.exc.ObjectDeletedError:
-                obj = None
-        return obj
+        """
+        Returns the object based on the class name and its ID, or
+        None if not found
+        """
+        if cls not in classes.values():
+            return None
+
+        all_cls = models.storage.all(cls)
+        for value in all_cls.values():
+            if (value.id == id):
+                return value
+
+        return None
 
     def count(self, cls=None):
         """
-            returns the count of all objects in storage
+        count the number of objects in storage
         """
-        return (len(self.all(cls)))
+        all_class = classes.values()
+
+        if not cls:
+            count = 0
+            for clas in all_class:
+                count += len(models.storage.all(clas).values())
+        else:
+            count = len(models.storage.all(cls).values())
+
+        return count

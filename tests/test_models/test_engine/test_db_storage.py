@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Contains the TestDBStorageDocs and TestDBStorage classes
+New update to the TestDBStorage class
 """
 
 from datetime import datetime

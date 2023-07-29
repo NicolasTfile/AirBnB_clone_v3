@@ -71,7 +71,7 @@ class FileStorage:
 
     def get(self, cls, id):
         """
-            retrieves one object based on class and id
+            retrieves one object based on class name and id
         """
         if cls and id:
             if isinstance(cls, BaseModel):
@@ -87,6 +87,6 @@ class FileStorage:
 
     def count(self, cls=None):
         """
-        count of all objects in file storage
+        count of all objects in storage
         """
         return (len(self.all(cls)))
